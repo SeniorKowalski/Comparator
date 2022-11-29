@@ -1,6 +1,6 @@
 package com.kowalski;
 
-public class Person implements Comparable<Person>{
+public class Person {
 
     private String name;
     private String surname;
@@ -24,6 +24,11 @@ public class Person implements Comparable<Person>{
         return surname;
     }
 
+    public int getSurnameWords(){
+        int nums = this.getSurname().split("\\P{IsAlphabetic}+").length;
+        return nums;
+    }
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
@@ -41,15 +46,4 @@ public class Person implements Comparable<Person>{
         return name + " " + surname + " " + age;
     }
 
-    @Override
-    public int compareTo(Person o) {
-
-        if (this.getSurname().split("\\P{IsAlphabetic}+").length > o.getSurname().split("\\P{IsAlphabetic}+").length){
-            return 1;
-        } else if (this.getSurname().split("\\P{IsAlphabetic}+").length < o.getSurname().split("\\P{IsAlphabetic}+").length){
-            return -1;
-        } else {
-            return Integer.compare(this.age,o.age);
-        }
-    }
 }
